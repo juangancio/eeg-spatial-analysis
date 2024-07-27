@@ -130,6 +130,7 @@ b_text=text(-.7,0.97,'b)','FontName','Helvetica', 'FontSize',18);
 a_text=text(-.7,1.2,'a)','FontName','Helvetica', 'FontSize',18);
 grid on, box on
 
+saveas(gcf,'fig4','epsc')
 
 
 %% Fig. 5: Hotizontal vs. vertical
@@ -310,6 +311,7 @@ a_text=text(-.4,0.46,'a)','FontName','Helvetica', 'FontSize',18);
 b_text=text(-.4,0.275,'b)','FontName','Helvetica', 'FontSize',18);
 c_text=text(-.4,0.1,'c)','FontName','Helvetica', 'FontSize',18);
 
+saveas(gcf,'fig5','epsc')
 
 %% Fig 6: Plot temporal features
 
@@ -420,7 +422,7 @@ a_text=text(-.09,1.99,'a)','FontName','Helvetica', 'FontSize',18);
 b_text=text(-.09,1.49,'b)','FontName','Helvetica', 'FontSize',18);
 c_text=text(-.09,1.01,'c)','FontName','Helvetica', 'FontSize',18);
 
-
+saveas(gcf,'fig6','epsc')
 
 %% Fig 7: All methods comparison
 
@@ -573,6 +575,7 @@ b_text=text(-3.7,1.01,'b)','FontName','Helvetica', 'FontSize',18);
 a_text=text(-3.7,1.42,'a)','FontName','Helvetica', 'FontSize',18);
 grid on, box on
 
+saveas(gcf,'fig7','epsc')
 
 %% Fig.8: Relative Entropy Difference
 
@@ -693,4 +696,5 @@ a_text=text(-4.5,0.45,'a)','FontName','Helvetica', 'FontSize',18);
 b_text=text(-4.5,0.2,'b)','FontName','Helvetica', 'FontSize',18);
 grid on, box on
 
+saveas(gcf,'fig8','epsc')
 
