@@ -19,17 +19,17 @@ make_figs.m: Matlab script that outputs the figures of Gancio et al. (2024)
 This script performs the main analysis publish in Gancio et al. (2024). 
 The following parameters have to be set:
 
-number_of_subjects: shouldn't be larger that 108, dataset has 109 but subject 109 has some not valid values at the end
+`number_of_subjects`: shouldn't be larger that 108, dataset has 109 but subject 109 has some not valid values at the end
 
-filt_mode:'raw' or 'filt', for considering only the alpha band
+`filt_mode`:'raw' or 'filt', for considering only the alpha band
 
-word_length: Word length of the symbols in the Ordinal Pattern analysis. For a 64 channel EEG, we recommend only set it word_length=3
+`word_length`: Word length of the symbols in the Ordinal Pattern analysis. For a 64 channel EEG, we recommend only set it word_length=3
 
-lag : Spatial lag of the symbols in the Ordinal Pattern analysis. For a 64 channel EEG, we recommend only set it lag=1
+`lag`: Spatial lag of the symbols in the Ordinal Pattern analysis. For a 64 channel EEG, we recommend only set it lag=1
 
-experiment_run = 1 #Run of the experiment, 1 for Eyes Open, and 2 to Eyes Closed
+`experiment_run`:Run of the experiment, 1 for Eyes Open, and 2 to Eyes Closed
 
-analysis_mode: Controls the symbol construction (temporal or spatial) and how the averages are performed.
+'analysis_mode': Controls the symbol construction (temporal or spatial) and how the averages are performed.
 
 'ensemble' : spatial analysis, but for each time, the mean value of SPE in all subjects if provided. This analysis corresponds to the one of Boaretto et al. (2023), and outputs the data used to plot Fig.4 of Gancio et al. (2024). It outputs SPE for diferente arrangement:
 
