@@ -14,24 +14,32 @@ def round_up(n, decimals=0):
 
 random.seed(10)
 
+number_of_subjects=107
+
+# FILES SELECTION
 # Set files to train and test a RF classification. The script assumes two column files 
-# of 107 subjets each, each file corresponding to a different experiment
+# of 'number_of_subjets' each, each file corresponding to a different experiment
+
 file1 = 'eeg_processed/pspe_ver_L_3_lag_1_run_1_filt.csv'
 file2 = 'eeg_processed/pspe_ver_L_3_lag_1_run_2_filt.csv'
-########################################
 
+################################################################################
 data1 = pd.read_csv(file1,header=None,sep='\,')
 data2 = pd.read_csv(file2,header=None,sep='\,')
-
 data = pd.concat([data1,data2],axis=0,ignore_index=True)
+################################################################################
 
-#2652124
+# REPEATED K-FOLD SET-UP
+
 kf = KFold(n_splits=10)
 rkf = RepeatedKFold(n_splits=10, n_repeats=20,random_state=2652125)
+#2652124
+
+################################################################################
 
 
-labels=[0]*107
-labels.extend([1]*107)
+labels=[0]*number_of_subjects
+labels.extend([1]*number_of_subjects)
 labels=np.array(labels)
 
 
@@ -46,20 +54,6 @@ pre_test=[]; s_pre_test=[]
 spe_train=[]; s_spe_train=[]
 spe_test=[]; s_spe_test=[] 
 
-'''train_labels=[0]*train_size
-train_labels.extend([1]*train_size)
-test_labels=[0]*(107-train_size)
-test_labels.extend([1]*(107-train_size))
-
-train_select=random.sample(range(0, 107), train_size)
-
-
-train_set=[data[0][i] for i in train_select]
-train_set.extend([data[0][i+107] for i in train_select])
-
-test_set=[data[0][i] for i in range(107) if i not in train_select]
-test_set.extend([data[0][i+107] for i in range(107) if i not in train_select])
-'''   
 
 parameter=range(1)#range(2,100,2)
 for p in parameter:
@@ -67,11 +61,11 @@ for p in parameter:
     TP_train=[]; FP_train=[]; FN_train=[]; TN_train=[]
     TP_test=[]; FP_test=[]; FN_test=[]; TN_test=[]
 
-    for train, test in rkf.split(data[0][:107]):
-        train_add=[i+107 for i in train]
+    for train, test in rkf.split(data[0][:number_of_subjects]):
+        train_add=[i+number_of_subjects for i in train]
         train = np.hstack([train,np.array(train_add)])
 
-        test_add=[i+107 for i in test]
+        test_add=[i+number_of_subjects for i in test]
         test=np.hstack([test,np.array(test_add)])
 
         test_set=data.iloc[test]

@@ -42,6 +42,12 @@ The following parameters have to be set:
 	vertical symbols
 
 
-'spatial': Spatial analysis as performed by Gancio et al. (2024), an average in time of the SPE values is provided (one averaged quantity for each subject). This provied the data for Fig. 5,and partial of Figs. 7 and 8 of  Gancio et al. (2024).
+'spatial': Spatial analysis as performed by Gancio et al. (2024), an average in time of the SPE values is provided (one averaged quantity for each subject). This provided the data for Fig. 5, and partial of Figs. 7 and 8 of  Gancio et al. (2024).
 
-'temporal':  Temporal analysis as performed by Gancio et al. (2024), an average in space of the Permutation Entropy (PE) values is provided (one averaged quantity for each subject). This provied the data for Fig. 6, and the additional data for Figs. 7 and 8 of  Gancio et al. (2024).
+'temporal':  Temporal analysis as performed by Gancio et al. (2024), an average in space of the Permutation Entropy (PE) values is provided (one averaged quantity for each subject). This provided the data for Fig. 6, and the additional data for Figs. 7 and 8 of  Gancio et al. (2024).
+
+## RF_single_feature.py
+
+Random Forest (RF) classification of the files that `eeg_analysis.py` outputs. Two file paths have to be specified, corresponding to the two different categories of the classification. These files have to be a column .csv file, and contain the same number of subjects (which has to also be set manually to the variable `number_of_subjects`. The files should correspond to the same pre-processing and analysis of the `eeg_analysis.py`, but different runs of the experiment, to the RF classification to make sense.
+
+The parameters of the k-fold cross validation can be set.
