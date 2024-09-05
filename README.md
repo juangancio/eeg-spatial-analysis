@@ -31,7 +31,7 @@ The following parameters have to be set:
 
 'analysis_mode': Controls the symbol construction (temporal or spatial) and how the averages are performed.
 
-'ensemble' : spatial analysis, but for each time, the mean value of SPE in all subjects if provided. This analysis corresponds to the one of Boaretto et al. (2023), and outputs the data used to plot Fig.4 of Gancio et al. (2024). It outputs SPE for diferente arrangement:
+'ensemble' : spatial analysis, but for each time, the mean value of SPE in all subjects if provided. This analysis corresponds to the one of Boaretto et al. (2023), and outputs the data used to plot Fig.4 of Gancio et al. (2024). It outputs SPE for different arrangements:
 
 	linear: straight forward, as come from the dataset, ordering (first approach of Boaretto et al. (2023))
 
@@ -50,4 +50,10 @@ The following parameters have to be set:
 
 Random Forest (RF) classification of the files that `eeg_analysis.py` outputs. Two file paths have to be specified, corresponding to the two different categories of the classification. These files have to be a column .csv file, and contain the same number of subjects (which has to also be set manually to the variable `number_of_subjects`. The files should correspond to the same pre-processing and analysis of the `eeg_analysis.py`, but different runs of the experiment, to the RF classification to make sense.
 
-The parameters of the k-fold cross validation can be set.
+The parameters of the k-fold cross validation can also be set.
+
+## RF_feature_select.py
+
+RF classifier with a feature selection stage. Script loads a file with all the features, and performs a feature selection that can be 'forward' or 'backward', until the 'n_features_to_select' has been reached. Then the script performs the classification and reports results.
+
+
