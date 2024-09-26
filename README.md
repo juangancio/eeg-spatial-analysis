@@ -5,13 +5,15 @@ These scrips reproduce the analysis performed and published in the work: ["Permu
 
 ## Scripts
 
-Summary of the scripts included:
+### Summary of the scripts included:
 
 eeg_analysis.py: Main analysis 
 
 eeg_utils.py: Supporting functions for eeg_analysis.py
 
 RF_single_feature.py: Random forest classification of the data
+
+RF_feature_select.py: Performs feature selection before running the RF classification (allows multiple feature classification)
 
 make_figs.m: Matlab script that outputs the figures of Gancio et al. (2024)
 
