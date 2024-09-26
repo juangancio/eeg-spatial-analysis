@@ -9,7 +9,8 @@ from eeg_utils import(
 
 ##### Set analysis parameters
 
-number_of_subjects = 108 #shouldn't be larger that 108, dataset has 109 but subject 109 has some not valid values at the end
+number_of_subjects = 108 #shouldn't be larger that 108, dataset has 109 but subject 109 has some not valid values at the end (this should be automated by some error control)
+# if larger than 97, the actual number of subjects is number_of_subjects-1, since subject 97 is removed for the same reasons as subject 109
 filt_mode = 'filt' # 'raw' or 'filt', for considering only the alpha band
 word_length = 3 # Word length
 lag = 1 # Spatial lag
@@ -121,4 +122,4 @@ elif analysis_mode == 'temporal':
     print('Process completed.')
 
 else:
-    raise Exception("Analysis mode not specified or incorrect, mode has to be 'endemble', 'temporal' or 'spatial'")
+    raise Exception("Analysis mode not specified or incorrect, mode has to be 'ensemble', 'temporal' or 'spatial'")
