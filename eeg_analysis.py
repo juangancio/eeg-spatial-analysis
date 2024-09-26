@@ -45,14 +45,19 @@ if analysis_mode == 'ensemble':
     startTime = datetime.now()
     if __name__ == '__main__':  
         pool = mp.Pool(mp.cpu_count())
+
         obj.set_mode('horizontal')  
-        ensemble_hor=pool.map(obj.par_ensemble_spe, range(obj.max_time))    
+        ensemble_hor = pool.map(obj.par_ensemble_spe, range(obj.max_time))    
+
         obj.set_mode('vertical')
-        ensemble_ver=pool.map(obj.par_ensemble_spe, range(obj.max_time)) 
-        ensemble_lin=pool.map(obj.par_ensemble_linear, range(obj.max_time)) 
-        ensemble_boaretto=pool.map(obj.par_ensemble_boaretto, range(obj.max_time)) 
+        ensemble_ver = pool.map(obj.par_ensemble_spe, range(obj.max_time)) 
+
+        ensemble_lin = pool.map(obj.par_ensemble_linear, range(obj.max_time)) 
+        ensemble_boaretto = pool.map(obj.par_ensemble_boaretto, range(obj.max_time)) 
+
         pool.close()  
         pool.join() 
+
     print('Time elapsed:' + str(datetime.now() - startTime))
     np.savetxt('eeg_processed/ensemble_linear_L_'+str(word_length)+'_lag_'+str(lag)+'_run_'+str(experiment_run)+'_'+filt_mode+'.csv',ensemble_lin, delimiter=",")
     np.savetxt('eeg_processed/ensemble_best_L_'+str(word_length)+'_lag_'+str(lag)+'_run_'+str(experiment_run)+'_'+filt_mode+'.csv',ensemble_boaretto, delimiter=",")
@@ -65,33 +70,37 @@ elif analysis_mode == 'spatial':
     
     startTime = datetime.now()
     if __name__ == '__main__':  
-        pool = mp.Pool(mp.cpu_count())  
-        '''obj.set_mode('horizontal')
-        spe_hor=pool.map(obj.par_spatial, range(obj.subjects))
-        spe_hor_std=pool.map(obj.par_spatial_std, range(obj.subjects))
-        pspe_hor=pool.map(obj.par_pool_SPE, range(obj.subjects))  
+        pool = mp.Pool(mp.cpu_count()) 
+
+        obj.set_mode('horizontal')
+        spe_hor = pool.map(obj.par_spatial, range(obj.subjects))
+        spe_hor_std = pool.map(obj.par_spatial_std, range(obj.subjects))
+        pspe_hor = pool.map(obj.par_pool_SPE, range(obj.subjects))  
+
         obj.set_mode('vertical')
-        spe_ver=pool.map(obj.par_spatial, range(obj.subjects))
-        spe_ver_std=pool.map(obj.par_spatial_std, range(obj.subjects))  
-        pspe_ver=pool.map(obj.par_pool_SPE, range(obj.subjects))  '''
+        spe_ver = pool.map(obj.par_spatial, range(obj.subjects))
+        spe_ver_std = pool.map(obj.par_spatial_std, range(obj.subjects))  
+        pspe_ver = pool.map(obj.par_pool_SPE, range(obj.subjects))
 
         spe_boa = pool.map(obj.par_spatial_boaretto, range(obj.subjects))  
 
         pool.close()  
         pool.join() 
+
     print('Time elapsed:' + str(datetime.now() - startTime))
-    '''np.savetxt('eeg_processed/spe_hor_L_'+str(word_length)+'_lag_'+str(lag)+'_run_'+str(experiment_run)+'_'+filt_mode+'.csv',spe_hor, delimiter=",")
+    np.savetxt('eeg_processed/spe_hor_L_'+str(word_length)+'_lag_'+str(lag)+'_run_'+str(experiment_run)+'_'+filt_mode+'.csv',spe_hor, delimiter=",")
     np.savetxt('eeg_processed/spe_ver_L_'+str(word_length)+'_lag_'+str(lag)+'_run_'+str(experiment_run)+'_'+filt_mode+'.csv',spe_ver, delimiter=",")
     np.savetxt('eeg_processed/std_spe_hor_L_'+str(word_length)+'_lag_'+str(lag)+'_run_'+str(experiment_run)+'_'+filt_mode+'.csv',spe_hor_std, delimiter=",")
-    np.savetxt('eeg_processed/std_spe_ver_L_'+str(word_length)+'_lag_'+str(lag)+'_run_'+str(experiment_run)+'_'+filt_mode+'.csv',spe_ver_std, delimiter=",")
     
+    np.savetxt('eeg_processed/std_spe_ver_L_'+str(word_length)+'_lag_'+str(lag)+'_run_'+str(experiment_run)+'_'+filt_mode+'.csv',spe_ver_std, delimiter=",")
     np.savetxt('eeg_processed/pspe_hor_L_'+str(word_length)+'_lag_'+str(lag)+'_run_'+str(experiment_run)+'_'+filt_mode+'.csv',pspe_hor, delimiter=",")
     np.savetxt('eeg_processed/pspe_ver_L_'+str(word_length)+'_lag_'+str(lag)+'_run_'+str(experiment_run)+'_'+filt_mode+'.csv',pspe_ver, delimiter=",")
-    '''
+    
     np.savetxt('eeg_processed/spe_boa_L_'+str(word_length)+'_lag_'+str(lag)+'_run_'+str(experiment_run)+'_'+filt_mode+'.csv',spe_boa, delimiter=",")
     
     print('Process completed.')
-    print(spe_boa)
+    
+
 elif analysis_mode == 'temporal':
     startTime = datetime.now()
     if __name__ == '__main__':  
@@ -109,3 +118,7 @@ elif analysis_mode == 'temporal':
     np.savetxt('eeg_processed/pe_std_L_'+str(word_length)+'_lag_'+str(lag)+'_run_'+str(experiment_run)+'_'+filt_mode+'.csv',pe_std, delimiter=",")
     
     print('Time elapsed:' + str(datetime.now() - startTime))
+    print('Process completed.')
+
+else:
+    raise Exception("Analysis mode not specified or incorrect, mode has to be 'endemble', 'temporal' or 'spatial'")
